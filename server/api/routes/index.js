@@ -9,7 +9,7 @@ Import custom packages
 const followerController = require('../controllers/followerController');
 const postController = require('../controllers/postController');
 const userController = require('../controllers/userController');
-
+const timelineController = require('../controllers/timelineController');
 /*
 Make a router
 */
@@ -20,5 +20,27 @@ Routes
 */
 
 // Todo: Write your end-points: url in combination with action methods from corresponding controllers
+
+router.get('/timeline', timelineController.getTimeline);
+
+router.get('/followers', followerController.getFollowers);
+router.post('/followers', followerController.followNewPerson);
+router.delete('/followers/:userId', followerController.deleteFollower)
+
+router.get('/allPosts', postController.getAllPosts);
+router.get('/posts', postController.getPosts);
+router.post('/posts', postController.createPost);
+router.delete('/posts/:postId', postController.deletePost);
+router.patch('/posts/:postId', postController.changeDiscriptionPosts);
+router.get('/posts/:postId/comments', postController.getComents);
+router.post('/posts/:postId/comments', postController.addComents);
+router.get('/posts/:postId/comments/:commentId', postController.getSpecificComents);
+router.delete('/posts/:postId/comments/:commentId', postController.deleteComments);
+router.post('/posts/:postId/likes', postController.addLike);
+router.delete('/posts/:postId/likes', postController.deleteLike);
+
+router.get('/users', userController.getUsers);
+router.get('/users/:userId', userController.getUser);
+
 
 module.exports = router;

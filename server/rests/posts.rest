@@ -1,1 +1,5 @@
 @baseUrl = http://localhost:8080
+
+###
+GET {{baseUrl}}/api/posts
+Authorization: f65e5656-e4cd-4668-9fe7-fbd03a84879d
