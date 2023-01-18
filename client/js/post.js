@@ -11,21 +11,11 @@ newPost.addEventListener('click', () => {
     makePost.style.display = "block";
 });
 
-inputFoto.addEventListener('keyup', (e) => {
-    searchStringFoto = e.target.value;
-    console.log(searchStringFoto)
-});
-
-inputBody.addEventListener('keyup', (e) => {
-    searchStringBody = e.target.value;
-    console.log(searchStringBody)
-});
-
 returnPost.addEventListener('click', () => {
     postToCreate = {
-        body : searchStringBody,
+        body : inputBody.value,
         picture : { 
-            small : searchStringFoto
+            small : inputFoto.value
         } 
     }
     addPost(postToCreate);
@@ -34,6 +24,9 @@ const addPost = (postToCreate) => {
     fetch(`http://localhost:8080/api/posts`, {
         method: 'POST',
         mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
         body: JSON.stringify(postToCreate)
     })
     .then(response => response.json()) 
