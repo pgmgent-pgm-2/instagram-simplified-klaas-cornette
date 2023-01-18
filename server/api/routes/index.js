@@ -24,8 +24,10 @@ Routes
 router.get('/timeline', timelineController.getTimeline);
 
 router.get('/followers', followerController.getFollowers);
-router.post('/followers', followerController.followNewPerson);
-router.delete('/followers/:userId', followerController.deleteFollower)
+router.get('/following', followerController.getfollowing);
+router.get('/notfollowing', followerController.getPersonsToFollow);
+router.post('/followers/:friendId', followerController.followNewPerson);
+router.delete('/followers/:id', followerController.deleteFollower)
 
 router.get('/allPosts', postController.getAllPosts);
 router.get('/posts', postController.getPosts);

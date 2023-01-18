@@ -9,7 +9,31 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <script src="js/main.js"></script>
-    <script scr="gebreuker.js"></script>
+    <button id="show-user-button">user</button>
+    <button id="show-home-button">home</button>
+    <button id="new-post">new post</button>
+    <div id="make-post">
+        <input id="input-foto" type="text" placeholder="url voor foto">
+        <input id="input-body" type="text" placeholder="body">
+        <button id="return-post">make post</button>
+    </div>
+    <div id="show-user">
+        <div id="gebreuker-info"></div>
+        <div id="gebreuker-followers"></div>
+        <div id="gebreuker-following"></div>
+        <div id="gebreuker-posts"></div>     
+    </div>
+    <div id="show-home">
+        <div id="home"></div>  
+        <div id="home-active-user-post"></div>
+        <div id="home-add-followers"></div> 
+        <div id="home-remove-followers"></div>
+    </div>
+     
+    
+    <script src="js/gebreuker.js"></script>
+    <script src="js/homePage.js"></script>
+    <script src="js/activeListeners.js"></script>
+    <script src="js/post.js"></script>
 </body>
 </html>

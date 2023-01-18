@@ -3,26 +3,39 @@ const API_URL = 'http://localhost:8080/api';
 const USERS_URL = `${API_URL}/users`;
 const POSTS_URL = `${API_URL}/posts`;
 const FOLLOWERS_URL = `${API_URL}/followers`;
+const FOLLOWING_URL = `${API_URL}/following`;
+const FOLLOWERSTOADD_URL = `${API_URL}/notfollowing`;
 const TIMELINE_URL = `${API_URL}/timeline`;
 const LIKES_URL = `${API_URL}/posts/:postId/likes`;
 
 //var
 let currentUserId = null;
 
-//functions
-const fetchUsers = async () => {
-    const response = await fetch(USERS_URL, {method: 'get'});
-    const data = await response.json();
-    console.log('users');
-    console.log(data);
-    //random user
-    let currentUser = data[Math.floor(Math.random() * data.length)];
-    currentUserId = currentUser.id;
-    //random user posts
-    fetchPosts(currentUserId);
+//cash 
+const $gebreukerPosts = document.getElementById('gebreuker-posts');
+const $gebreukerInfo = document.getElementById('gebreuker-info');
+const $gebreukerFollowers = document.getElementById('gebreuker-followers');
+const $gebreukerFollowing = document.getElementById('gebreuker-following');
+//get functies 
+
+const getUserPage = () => {
+    fetchUsersId();  
 }
 
- const fetchPosts = async (userId) => {
+//fetch
+
+const fetchUsersId = async () => {
+    const response = await fetch(USERS_URL, {method: 'get'});
+    const data = await response.json();
+    let currentUser = await data[Math.floor(Math.random() * data.length)];
+    currentUserId = await currentUser.id;
+    fetchPosts(currentUserId);
+    fetchFollowers(currentUserId);
+    fetchFollowing(currentUserId);
+    updateInterfaceGebreuker(currentUser);
+}
+
+const fetchPosts = async (userId) => {
     const response = await fetch(POSTS_URL, {
         method: 'get',
         mode: 'cors',
@@ -32,31 +45,83 @@ const fetchUsers = async () => {
         }
     });
     const data = await response.json();
-    console.log(`posts van ${userId}`);
-    console.log(data);
+    updateInterfacePosts(data);
+    
 }
 
-(() => {
-    const app = {
-        initialize(){
-            this.cacheElements();
-            this.buildUI();
-        },
-        cacheElements() {
-            this.$gebreuker = document.getElementById("gebreuker");
-        },
-
-        buildUI() {
-            this.$gebreuker.innerHTML = this.generateHTMLGebreuker(fetchPosts);
-        },
-        generateHTMLGebreuker() {
-            return map(() => {
-                    return `
-                            <div>       
-                    `;
-                }).join("");
+const fetchFollowers = async (userId) => {
+    const response = await fetch(FOLLOWERS_URL, {
+        method: 'get',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': userId
         }
+    });
+    const data = await response.json();
+    updateInterfaceFollowers(data);
+}
+
+const fetchFollowing = async (userId) => {
+    const response = await fetch(FOLLOWING_URL, {
+        method: 'get',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': userId
+        }
+    });
+    const data = await response.json();
+    updateInterfaceFollowing(data);
+}
+
+//inladen
+const updateInterfaceGebreuker =  (data) => {
+     $gebreukerInfo.innerHTML = getHTMLGebreukerInfo(data);
+}
+
+const updateInterfacePosts =  (data) => {
+    $gebreukerPosts.innerHTML = getHTMLGebreukerPosts(data);
+}
+
+const updateInterfaceFollowers =  (data) => {
+    $gebreukerFollowers.innerHTML = getHTMLFollowers(data);
+}
+
+const updateInterfaceFollowing =  (data) => {
+    $gebreukerFollowing.innerHTML = getHTMLFollowing(data);
+}
+
+//html crieeren 
+const getHTMLFollowing = (data) => {
+            return  `
+                    <p>folowing ${data.length}</p>
+                    `
+}
+
+const getHTMLFollowers = (data) => {
+            return  `
+                    <p>folowers ${data.length}</p>
+                    `
+}
+
+const getHTMLGebreukerPosts = (data) => {
+            return `<p>posts ${data.length}</p>
+                    
+            ${data.map((data) => {
+            return `
+                    <img src="${data.picture.small}" alt="">
+                    
+                    `;
+          }).join('')}`
 };
 
-app.initialize();
-})();
+const getHTMLGebreukerInfo = (data) => {
+    return  `
+            <img src="${data.avatar}" alt="">
+            <p>${data.username}</p>
+            <p>${data.firstName} ${data.lastName}</p>
+            `;
+      
+}
+getUserPage();

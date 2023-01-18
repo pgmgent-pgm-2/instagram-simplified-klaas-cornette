@@ -84,16 +84,6 @@ const getPosts = (userId) => {
   }
 };
 
-const getPostsDetail = (userId) => {
-  try {
-    let posts = readDataFromPostsFile();
-    posts = posts.filter(p => p.authorId === userId);
-    return posts.detail;
-  } catch (error){
-    throw new HTTPError('can\'t get all the posts details', 500);
-  }
-};
-
 const createPost = (post) => {
   try {
     let posts = readDataFromPostsFile();
@@ -126,18 +116,15 @@ const changeDiscriptionPosts = (postId, discription) => {
   try {
     let posts = readDataFromPostsFile();
     let indexPost = posts.findIndex(p => p.id === postId);
-    
-    const bodyTochange = {
-      ...discription
-    }
-    delete posts[indexPost].body;
-    posts[indexPost].push(bodyTochange);
+    posts[indexPost] = {
+      ...posts[indexPost],
+      discription,
+    };
     //fs.writeFileSync(filePathPosts, JSON.stringify(posts, null, 2));
     return posts[indexPost];
   } catch (error){
     throw new HTTPError('can\'t create the comment', 500);
   }
-    
 };
 
 const getComents = (postId) => {
@@ -236,18 +223,29 @@ const deleteLike = (likeId, postId) => {
 const getFollowers = (userId) => {
   try {
     let followers = readDataFromFollowersFile();
-    followers = followers.filter(f => f.userId === userId);
+    followers = followers.filter(f => f.friendId === userId);
     return followers;
   } catch (error){
     throw new HTTPError('can\'t get all the followers', 500);
   }
 };
 
-const followNewPerson = (newFollower) => {
+const getFollowing = (userId) => {
+  try {
+    let following = readDataFromFollowersFile();
+    following = following.filter(f => f.userId === userId);
+    return following;
+  } catch (error){
+    throw new HTTPError('can\'t get all the persons following you', 500);
+  }
+};
+
+const followNewPerson = (newFollower, userId) => {
   try {
     let followers = readDataFromFollowersFile();
     const followerToCreate = {
-      ...newFollower,
+      friendId : newFollower,
+      userId : userId,
       id: uuidv4(),
       createdAt: Date.now(),
     }
@@ -259,10 +257,10 @@ const followNewPerson = (newFollower) => {
   }
 };
 
-const deleteFollower = (userId) => {
+const deleteFollower = (id) => {
   try {
     let followers = readDataFromFollowersFile();
-    let deletedFollowers = followers.filter(f => f.id !== userId);
+    let deletedFollowers = followers.filter(f => f.id !== id);
     fs.writeFileSync(filePathFollowers, JSON.stringify(deletedFollowers, null, 2));
     return deletedFollowers;
   } catch (error){
@@ -279,10 +277,15 @@ const getTimeline = (userId) => {
     let filterPost;
     followers.forEach(e => {
       filterPost = posts.filter(pf => pf.authorId === e.friendId);
-      timelinePosts.push(filterPost);
+      timelinePosts.push(...filterPost);
     });
-    
-    return timelinePosts;
+    timelinePosts = timelinePosts.sort((a, b) => {
+      if (a.updatedAt > b.updatedAt) {
+        return -1;
+      }
+    });
+    let timeline = timelinePosts.slice(0, 3);
+    return timeline;
   } catch (error){
     throw new HTTPError('can\'t get all the posts of all the followers', 500);
   }
@@ -307,4 +310,5 @@ module.exports = {
   addLike,
   deleteLike,
   changeDiscriptionPosts,
+  getFollowing,
 };
