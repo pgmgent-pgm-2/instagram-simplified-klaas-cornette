@@ -1,0 +1,284 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Light.woff2') format('woff2'),
+        url('../fonts/Roboto-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.woff2') format('woff2'),
+        url('../fonts/Roboto-Medium.woff') format('woff');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('../fonts/Cabin-Medium.woff2') format('woff2'),
+        url('../fonts/Cabin-Medium.woff') format('woff');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('../fonts/Cabin-Regular.woff2') format('woff2'),
+        url('../fonts/Cabin-Regular.woff') format('woff');
+}
+
+body {
+    margin: 0;
+}
+
+.navigation-left h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navigation {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.width-page {
+    max-width: 85rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.navigation-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.navigation-right button {
+    border: none;
+}
+
+.navigation-right img {
+    width: 2.5rem;
+    margin-right: 1rem;
+}
+
+.user-rapper {
+    padding: 1.5rem;
+    border: 1px solid hsl(0, 4%, 75%);
+    border-radius: 1rem;
+    padding-bottom: 5rem;
+}
+
+#make-post {
+    position: absolute;
+    border: 1px solid hsl(0, 4%, 75%);
+    border-radius: 1rem;
+    right: 1rem;
+    top: 4rem;
+    padding: 2rem;
+    z-index: 9;
+    background-color: hsla(0, 0%, 79%, 0.937);
+}
+
+#make-post input {
+    display: flex;
+    flex-direction: row;
+    margin: 1.5rem;
+    width: 30rem;
+}
+
+#make-post label {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 500;
+}
+
+#make-post button {
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    margin-left: 3.5rem;
+    border: solid 2px hsl(0, 4%, 75%);
+}
+
+#make-post button:hover {
+    box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.2), 0 2px 5px 0 hsla(0, 0%, 0%, 0.19);
+}
+
+#gebreuker-info img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-left: 5rem;
+}
+
+.text-gebreuker p {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-family: 'Cabin', sans-serif;
+    margin-left: 5.5rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.text-gebreuker p:last-child {
+    display: none;
+}
+
+.gebreuker-follow-rapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    margin-left: 5.5rem;
+}
+
+.gebreuker-follow-rapper p {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-family: 'Cabin', sans-serif;
+    margin-right: 1rem;
+}
+
+#gebreuker-posts {
+    position: relative;
+    max-width: 85rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 5rem;
+}
+
+#gebreuker-posts p {
+    position: absolute;
+    top: -10rem;
+    left: 7rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-family: 'Cabin', sans-serif;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#gebreuker-posts img {
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
+}
+
+#home {
+    max-width: 32rem;
+    margin: auto;
+}
+
+#home img {
+    width: 32rem;
+    height: 32rem;
+    object-fit: cover;
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+}
+
+#home .likes img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: fill;
+    margin: 1rem;
+}
+
+#home .likes p {
+    margin: 1rem;
+}
+
+#home input {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+#home-active-user-post {
+    max-width: 32rem;
+    margin: auto;
+}
+
+#home-active-user-post img {
+    width: 32rem;
+    height: 32rem;
+    object-fit: cover;
+}
+
+#home-active-user-post .likes img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: fill;
+    margin: 1rem;
+}
+
+#home-active-user-post .likes button {
+    border: transparent;
+    margin: 0;
+}
+
+#home-active-user-post .likes p {
+    margin: 1rem;
+}
+
+#home-active-user-post input {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+#home-active-user-post button {
+    border: solid 1px hsl(0, 0%, 59%);
+    padding: 0.3rem 1rem;
+    margin-bottom: 1rem;
+}
+
+#show-home {
+    position: relative;
+}
+
+#home-add-followers {
+    position: absolute;
+    top: 1rem;
+    left: 65rem;
+}
+
+.user img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+}
+
+.user p {
+    margin: auto 0.5rem;
+}
+
+.user button:hover {
+    color: rgb(23, 91, 239);
+}
+
+#home-remove-followers button:hover {
+    color: rgb(204, 4, 4);
+}
+
+#home-remove-followers {
+    position: absolute;
+    top: 31rem;
+    left: 65rem;
+}

@@ -8,7 +8,12 @@ let searchStringFoto = '';
 let postToCreate;
 makePost.style.display = "none";
 newPost.addEventListener('click', () => {
-    makePost.style.display = "block";
+    if(makePost.style.display == 'block'){
+        makePost.style.display = "none"; 
+    }else {
+        makePost.style.display = "block";
+    }
+    
 });
 
 returnPost.addEventListener('click', () => {

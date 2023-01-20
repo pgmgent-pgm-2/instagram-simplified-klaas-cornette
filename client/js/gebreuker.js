@@ -119,8 +119,10 @@ const getHTMLGebreukerPosts = (data) => {
 const getHTMLGebreukerInfo = (data) => {
     return  `
             <img src="${data.avatar}" alt="">
-            <p>${data.username}</p>
-            <p>${data.firstName} ${data.lastName}</p>
+            <div class="text-gebreuker">
+                <p>${data.username}</p>
+                <p>${data.firstName} ${data.lastName}</p>
+            </div>
             `;
       
 }

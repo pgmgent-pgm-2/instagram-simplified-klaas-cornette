@@ -13,9 +13,11 @@ let addFollower5 = '';
 let like1 = '';
 let like2 = '';
 let like3 = '';
+let like4 = '';
 let disLike1 = '';
 let disLike2 = '';
 let disLike3 = '';
+let disLike4 = '';
 let showComent1 = '';
 let showComent2 = '';
 let showComent3 = '';
@@ -61,6 +63,8 @@ function run () {
         like1 = document.getElementById(`like:${likeArray[0]}`);
         like2 = document.getElementById(`like:${likeArray[1]}`);
         like3 = document.getElementById(`like:${likeArray[2]}`);
+        like4 = document.getElementById(`like:${currnetPostId}`);
+        disLike4 = document.getElementById(`dislike:${currnetPostId}`);
         disLike1 = document.getElementById(`dislike:${likeArray[0]}`);
         disLike2 = document.getElementById(`dislike:${likeArray[1]}`);
         disLike3 = document.getElementById(`dislike:${likeArray[2]}`);
@@ -80,6 +84,12 @@ function run () {
         });
         like3.addEventListener('click', () => {
             addLike(likeArray[2])
+        });
+        like4.addEventListener('click', () => {
+            addLike(currnetPostId)
+        });
+        disLike4.addEventListener('click', () => {
+            deleteLike(currnetPostId)
         });
         disLike1.addEventListener('click', () => {
             deleteLike(likeArray[0])

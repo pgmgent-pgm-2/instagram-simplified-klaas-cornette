@@ -185,11 +185,12 @@ const getHTMLHome = (data) => {
     return data.map((data) => {
         return `
                 <img src="${data.picture.small}" alt="">
-                <a>${data.likes.length} likes</a>
-                <button id="like:${data.id}">like</button>
-                <button id="dislike:${data.id}">dislike</button>
-                <p>${checkComment(data.comments[getRandomComment(data.comments)].body)}</p>
-                <button  id="click:${data.id}">view all ${data.comments.length-1} other comments</button> 
+                <div class="likes">
+                    <button id="like:${data.id}"><img src="img/heart.png" alt="hart"></button>
+                    <button id="dislike:${data.id}"><img src="img/no-heart.png" alt="no hart"></button>
+                    <p>${data.likes.length} likes</p>
+                </div>
+                <p>${checkComment(data.comments[getRandomComment(data.comments)].body.split('.')[0])}. <button  id="click:${data.id}">view all ${data.comments.length-1} other comments</button></p>
                 <div id="comment:${data.id}">
                     ${data.comments.map((comments) => {
                         return `<p>${comments.body}</p>`
@@ -211,9 +212,11 @@ const getHTMLAddFollowers = (userData, data) => {
        activeFollowersToAdd.push(e.id); 
     });
     for(let i = 0; i < activeFollowersToAdd.length; i++){
-        htmlString = (`<img src="${userData[i].avatar}" alt="">
-                        <p>${userData[i].username}</p>
-                        <button id="${data[i].id}">follow</button>`+ htmlString);
+        htmlString = ( `<div class="user">
+                            <img src="${userData[i].avatar}" alt="">
+                            <p>${userData[i].username}</p>
+                            <button id="${data[i].id}">follow</button>
+                        </div>`+ htmlString);
     }
     htmlString = htmlString.slice(0, -9)
     return htmlString
@@ -225,9 +228,11 @@ const getHTMLremoveFollowers = (userData, data) => {
        activeFollowers.push(e.id); 
     });
     for(let i = 0; i < activeFollowers.length; i++){
-        htmlString =    (`<img src="${userData[i].avatar}" alt="">
-                        <p>${userData[i].username}</p>
-                        <button id="${data[i].id}">unfollow</button>` + htmlString);
+        htmlString =    (`<div class="user">
+                            <img src="${userData[i].avatar}" alt="">
+                            <p>${userData[i].username}</p>
+                            <button id="${data[i].id}">unfollow</button>
+                        </div>` + htmlString);
     }
     htmlString = htmlString.slice(0, -9)
     console.log(activeFollowers)
@@ -243,11 +248,12 @@ const getHTMLHomePost = (data) => {
         return  `
                 <button id="${data.id}">Delete</button>
                 <img src="${data.picture.small}" alt="">
-                <p>${data.likes.length} likes</p>
-                <button id="like:${data.id}">like</button>
-                <button id="dislike:${data.id}">like</button>
-                <p>${checkComment(data.comments[getRandomComment(data.comments)].body)}</p> 
-                <button id="click:${data.id}">view all ${data.comments.length-1} other comments</button>
+                <div class="likes">
+                    <button id="like:${data.id}"><img src="img/heart.png" alt="hart"></button>
+                    <button id="dislike:${data.id}"><img src="img/no-heart.png" alt="no hart"></button>
+                    <p>${data.likes.length} likes</p>
+                </div>
+                <p>${checkComment(data.comments[getRandomComment(data.comments)].body.split('.')[0])}. <button id="click:${data.id}">view all ${data.comments.length-1} other comments</button></p> 
                 <div id="comment:${data.id}">
                     ${data.comments.map((comments) => {
                         return `<p>${comments.body}</p>`

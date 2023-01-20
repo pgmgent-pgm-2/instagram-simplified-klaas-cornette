@@ -1,29 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="nl" class="">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
     <title>Instagram Simplified | Programming 2 | Associate Degree in Computer Programming</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <button id="show-user-button">user</button>
-    <button id="show-home-button">home</button>
-    <button id="new-post">new post</button>
-    <div id="make-post">
-        <input id="input-foto" type="text" placeholder="url voor foto">
-        <input id="input-body" type="text" placeholder="body">
-        <button id="return-post">make post</button>
-    </div>
-    <div id="show-user">
-        <div id="gebreuker-info"></div>
-        <div id="gebreuker-followers"></div>
-        <div id="gebreuker-following"></div>
+    <nav>
+        <div class="navigation width-page">
+            <div class="navigation-left">
+                <h1>Instagram Simplified</h1>
+            </div>
+            <div class="navigation-right">
+                <button id="show-home-button"><img src="img/home.png" alt="home"></button>
+                <button id="show-user-button"><img src="img/user.png" alt="user"></button>
+                <button id="new-post"><img src="img/more.png" alt="add post"></button>
+            </div>
+            <div id="make-post">
+                <label for="input-foto">Url foto</label>
+                <input id="input-foto" type="text" placeholder="url voor foto">
+                <label for="input-body">Beschrijving</label>
+                <input id="input-body" type="text" placeholder="body">
+                <button id="return-post">make post</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="show-user" class="width-page">
+        <div class="user-rapper">
+            <div id="gebreuker-info"></div>
+            <div class="gebreuker-follow-rapper">
+                <div id="gebreuker-followers"></div>
+                <div id="gebreuker-following"></div>
+            </div>    
+        </div>
+        
         <div id="gebreuker-posts"></div>     
     </div>
-    <div id="show-home">
+    <div id="show-home" class="width-page">
         <div id="home"></div>  
         <div id="home-active-user-post"></div>
         <div id="home-add-followers"></div> 
